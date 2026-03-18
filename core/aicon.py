@@ -5,6 +5,7 @@ from experiment import run_experiment, reproduce_experiment
 from env_manager import create_env, list_envs, install_package, activate_help
 from dataset import register_dataset, list_datasets
 from exp_viewer import list_experiments, show_experiments
+from exp_compare import compare_experiments
 
 def main():
 	if len(sys.argv) < 2:
@@ -52,15 +53,21 @@ def main():
 		elif sub == "list":
 			list_datasets()
 	elif command == "exp":
-		if len(sys.argv)<3:
-			print("Usage: aicon exp [list/show]")
+		if len(sys.argv) < 3:
+			print("Usage: aicon exp [list/show/compare]")
 			return
 		sub = sys.argv[2]
 		if sub == "list":
 			list_experiments()
 		elif sub == "show":
-			filename = sys.argv[3]
-			show_experiment(filename)
+			show_experiments(sys.argv[3])
+		elif sub == "compare":
+			if len(sys.argv)<5:
+				print("Usage: aicon exp compare exp1 exp2")
+				return
+			compare_experiments(sys.argv[3], sys.argv[4])
+
+
 	else:
 		print("Unknown command")
 
