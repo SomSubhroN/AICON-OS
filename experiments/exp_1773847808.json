@@ -1,0 +1,11 @@
+{
+    "script": "test.py",
+    "parameters": [],
+    "env": "testenv",
+    "runtime_seconds": 2.03,
+    "status": "success",
+    "system": {
+        "cpu_usage": 0.6,
+        "memory_usage": 12.2
+    }
+}
