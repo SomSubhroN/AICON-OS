@@ -1,6 +1,6 @@
-# AICON OS
+# AICON
 
-A lightweight AI research operating system for reproducible experiments.
+A lightweight AI research workflow system for reproducible experiments.
 
 ## Features
 - Experiment tracking
