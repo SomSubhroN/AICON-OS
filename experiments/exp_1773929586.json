@@ -1,0 +1,17 @@
+{
+    "script": "test.py",
+    "parameters": [
+        "--dataset",
+        "mydata"
+    ],
+    "env": "testenv",
+    "runtime_seconds": 2.02,
+    "status": "success",
+    "system": {
+        "cpu_usage": 0.5,
+        "memory_usage": 11.9
+    },
+    "env_packages": [
+        "numpy==2.4.3"
+    ]
+}

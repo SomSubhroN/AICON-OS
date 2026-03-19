@@ -6,6 +6,7 @@ from env_manager import create_env, list_envs, install_package, activate_help
 from dataset import register_dataset, list_datasets
 from exp_viewer import list_experiments, show_experiments
 from exp_compare import compare_experiments
+from scheduler import create_job, scheduler_loop, list_jobs
 
 def main():
 	if len(sys.argv) < 2:
@@ -66,6 +67,17 @@ def main():
 				print("Usage: aicon exp compare exp1 exp2")
 				return
 			compare_experiments(sys.argv[3], sys.argv[4])
+	elif command == "submit":
+		if len(sys.argv) < 3:
+			print("Usage: aicon submit scipt.py [args]")
+			return
+		script = sys.argv[2]
+		args = sys.argv[3:]
+		create_job(script, args)
+	elif command == "scheduler":
+		scheduler_loop()
+	elif command == "jobs":
+		list_jobs()
 
 
 	else:

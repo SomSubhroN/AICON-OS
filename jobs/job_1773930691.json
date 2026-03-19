@@ -1,0 +1,10 @@
+{
+    "script": "test.py",
+    "args": [
+        "--env",
+        "testenv",
+        "--dataset",
+        "mydata"
+    ],
+    "status": "pending"
+}
