@@ -1,0 +1,8 @@
+{
+    "script": "test.py",
+    "args": [
+        "--heavy"
+    ],
+    "status": "done",
+    "priority": "normal"
+}

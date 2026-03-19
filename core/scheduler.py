@@ -14,7 +14,8 @@ def create_job(script, args):
 	job = {
 		"script": script,
 		"args": args,
-		"status": "pending"
+		"status": "pending",
+		"priority": "normal"
 		}
 	filename = f"job_{int(time.time())}.json"
 	path = os.path.join(JOB_DIR, filename)
@@ -24,7 +25,8 @@ def create_job(script, args):
 
 def get_next_job():
 	ensure_jobs()
-	for file in sorted(os.listdir(JOB_DIR)):
+	jobs = []
+	for file in os.listdir(JOB_DIR):
 		path = os.path.join(JOB_DIR, file,)
 		with open(path, "r") as f:
 			job = json.load(f)
@@ -35,6 +37,10 @@ def get_next_job():
 				json.dump(job, fw, indent=4)
 		if job["status"] == "pending":
 			return file, job
+		priority_map = {"high": 0, "normal": 1, "low": 2}
+		jobs.sort(key=lambda x: priority_map.get("priority", "normal", 1))
+		if jobs:
+			return jobs[0]
 	return None, None
 
 def update_job(filename, job):
@@ -47,12 +53,16 @@ def scheduler_loop():
 	try:
 		while True:
 			cpu = psutil.cpu_percent(interval=1)
-			if cpu < 40:
+			ram = psutil.virtual_memory().percent
+			if cpu < 50 and ram < 70:
 				filename, job = get_next_job()
 				if job and job["status"] != "pending":
 					continue
 				if job:
 					print(f"Running job: {filename}")
+					if any("heavy" in arg for arg in job["args"]) and cpu > 30:
+						print("Delaying heavy job due to load.")
+						continue
 					job["status"] = "running"
 					update_job(filename, job)
 					try:

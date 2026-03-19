@@ -1,0 +1,14 @@
+{
+    "script": "test.py",
+    "parameters": [
+        "--heavy"
+    ],
+    "env": "system",
+    "runtime_seconds": 0.03,
+    "status": "failed",
+    "system": {
+        "cpu_usage": 30.0,
+        "memory_usage": 12.2
+    },
+    "env_packages": null
+}

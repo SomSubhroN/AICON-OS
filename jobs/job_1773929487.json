@@ -6,5 +6,5 @@
         "--dataset",
         "mydata"
     ],
-    "status": "running"
+    "status": "done"
 }
