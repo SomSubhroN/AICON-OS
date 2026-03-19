@@ -11,8 +11,8 @@ A lightweight AI research workflow system for reproducible experiments.
 
 ## Installation
 
-git clone https://github.com/SomSubhroN/AICON-OS.git  
-cd AICON-OS  
+https://github.com/SomSubhroN/AICON.git   
+cd AICON  
 chmod +x install.sh  
 ./install.sh  
 
